@@ -1,6 +1,7 @@
 keys
 .keys
 .config/
+.env
 .config/*
 
 docker-compose.yml
