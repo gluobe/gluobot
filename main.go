@@ -14,35 +14,28 @@ import (
 )
 
 const (
-	Region     = "eu-west-1"
-	Sender     = "maarten@gluo.be"
-	secretName = "dev/gluobot/api_token"
-
+	// SES const
+	Region    = "eu-west-1"
+	Sender    = "maarten@gluo.be"
 	Recipient = "maarten@gluo.be"
-
-	// Specify a configuration set. To use a configuration
-	// set, comment the next line and line 92.
-	//ConfigurationSet = "ConfigSet"
-
-	// The subject line for the email.
-	Subject = "Amazon SES Test (AWS SDK for Go)"
-
-	// The HTML body for the email.
-	HtmlBody = "<h1>Amazon SES Test Email (AWS SDK for Go)</h1><p>This email was sent with " +
+	Subject   = "Amazon SES Test (AWS SDK for Go)"
+	HtmlBody  = "<h1>Amazon SES Test Email (AWS SDK for Go)</h1><p>This email was sent with " +
 		"<a href='https://aws.amazon.com/ses/'>Amazon SES</a> using the " +
 		"<a href='https://aws.amazon.com/sdk-for-go/'>AWS SDK for Go</a>.</p>"
-
-	//The email body for recipients with non-HTML email clients.
 	TextBody = "This email was sent with Amazon SES using the AWS SDK for Go."
+	CharSet  = "UTF-8"
 
-	// The character encoding for the email.
-	CharSet = "UTF-8"
+	// Secret-manager
+	secretName = "dev/gluobot/api_token"
 )
 
 func main() {
+	fmt.Println(getSecret())
+	fmt.Println("test")
+
 	api := slack.New(getSecret())
+
 	rtm := api.NewRTM()
-	sendMail()
 
 	go rtm.ManageConnection()
 
