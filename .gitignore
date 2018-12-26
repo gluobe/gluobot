@@ -2,3 +2,6 @@ keys
 .keys
 .config/
 .config/*
+
+docker-compose.yml
+
